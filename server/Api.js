@@ -11,5 +11,6 @@ const knex = require("knex")(
 );
 
 api.get('/', (req, res) => res.status(200).send(`Z-Prefix CRUD API is listening at http://localhost:${port}!`));
+api.get('/SignIn', (req, res) => res.status(200).send({ token: 'test123' }));
 
 api.listen(port, () => console.log(`Z-Prefix CRUD API is listening at http://localhost:${port}!`));
