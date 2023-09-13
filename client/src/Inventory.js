@@ -85,7 +85,10 @@ export default function Inventory() {
                       {card.name}
                     </Typography>
                     <Typography>
-                      Item details go here.
+                      {card.description}
+                    </Typography>
+                    <Typography>
+                        Qty: {card.quantity}
                     </Typography>
                   </CardContent>
                   <CardActions>
