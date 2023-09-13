@@ -82,13 +82,13 @@ export default function Inventory() {
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      {card.name}
+                      {card.Item_Name}
                     </Typography>
                     <Typography>
-                      {card.description}
+                      {card.Description}
                     </Typography>
                     <Typography>
-                        Qty: {card.quantity}
+                        Qty: {card.Quantity}
                     </Typography>
                   </CardContent>
                   <CardActions>

@@ -6,10 +6,17 @@
 module.exports = {
 
   development: {
-    client: 'postgresql',
+    client: "postgresql",
     connection: {
-      filename: 'postgres://postgres:docker@localhost/inventory_db'
-    }
+      host: "127.0.0.1",
+      password: "docker",
+      user: "postgres",
+      port: 5432,
+      database: "inventory",
+    },
+    seeds: {
+      directory: "./seeds",
+    },
   },
 
   staging: {
