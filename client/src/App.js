@@ -1,16 +1,18 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar2 from './Navbar2';
+import Navbar from './Navbar';
+import Footer from './Footer';
 import Inventory from './Inventory';
 import Login from './Login';
 
 function App() {
   return (
     <Router>
-      <Navbar2 />
+      <Navbar />
       <Routes>
         <Route path="/" element={<Inventory />} />
         <Route path="/Login" element={<Login/>} />
       </Routes>
+      <Footer />
     </Router>
   )
 }

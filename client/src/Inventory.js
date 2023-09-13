@@ -9,25 +9,26 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { Stack } from '@mui/material';
 // import Link from '@mui/material/Link';
 import { ThemeProvider } from '@mui/material/styles';
-// import Fetcher from './Fetcher';
+import InventoryFetch from './InventoryFetch';
 import DefaultTheme from './DefaultTheme';
 
 
-export default function Home() {
-  // Hard-coded movies for front-end testing.
-  const inventoryData = [
-    {name: 'Hammer'},
-    {name: 'Shovel'},
-    {name: 'Square'},
-    {name: 'Tape Measure'},
-    {name: 'Screw Driver'},
-    {name: 'Socket Wrench'},
-  ];
+export default function Inventory() {
+//   // Hard-coded items for back-end testing.
+//   const inventoryData = [
+//     {name: 'Hammer'},
+//     {name: 'Shovel'},
+//     {name: 'Square'},
+//     {name: 'Tape Measure'},
+//     {name: 'Screw Driver'},
+//     {name: 'Socket Wrench'},
+//   ];
 
-//   // API fetch for Hard-coded back-end testing.
-//   const { inventoryData } = Fetcher();
+  // API fetch for Hard-coded back-end testing.
+  const { inventoryData } = InventoryFetch();
 
   return (
     <ThemeProvider theme={DefaultTheme}>
@@ -40,7 +41,7 @@ export default function Home() {
             pb: 0,
           }}
         >
-          <Container maxWidth="sm">
+          <Container maxWidth="lg">
             <Typography
               component="h1"
               variant="h2"
@@ -53,19 +54,18 @@ export default function Home() {
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
             Manage item inventory, add new items, update item status, and more!
             </Typography>
-            {/* <Stack
+            <Stack
               sx={{ pt: 4 }}
               direction="row"
               spacing={2}
               justifyContent="center"
             >
-              <Button variant="contained">Main call to action</Button>
-              <Button variant="outlined">Secondary action</Button>
-            </Stack> */}
+              <Button variant="contained">Add New Item</Button>
+              <Button variant="outlined">Update Inventory</Button>
+            </Stack>
           </Container>
         </Box>
-        <Container sx={{ py: 8 }} maxWidth="md">
-          {/* End hero unit */}
+        <Container sx={{ py: 8 }} maxWidth="lg">
           <Grid container spacing={4}>
             {inventoryData.map((card) => (
               <Grid item key={card} xs={12} sm={6} md={4}>

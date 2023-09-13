@@ -1,29 +1,29 @@
 import { useState, useEffect } from "react";
 
-const Fetcher = (data) => {
-  const [fetchData, setFetchData] = useState([]);
+const InventoryFetch = (data) => {
+  const [inventoryData, setInventoryData] = useState([]);
   const [error, setError] = useState(null);
   const url = `http://localhost:`;
   const port = `8080`;
-  const endpoint = `/SignIn`;
+  const endpoint = `/Inventory`;
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchInventory() {
       try {
         const res = await fetch(url+port+endpoint)
         if (!res.ok) {
-          throw new Error('Unable to fetch data!');
+          throw new Error('Unable to fetch inventory!');
         }
         const data = await res.json();
-        setFetchData(data);
+        setInventoryData(data);
       } catch (error) {
         console.error('Error fetching data:', error);
         setError(error.message);
       }
     }
-    fetchData();
+    fetchInventory();
   }, [url, port, endpoint]);
-  return { fetchData, error };
+  return { inventoryData, error };
 }
 
-export default Fetcher;
+export default InventoryFetch;
