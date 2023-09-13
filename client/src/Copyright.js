@@ -5,8 +5,8 @@ const Copyright = (props) => {
     return (
       <Typography variant="body2" color="text.secondary" align="center" {...props}>
         {'Copyright © '}
-        <Link color="inherit" href="/Webmaster">
-          Imaginary Item Inventory Solutions (I3S)
+        <Link color="inherit" href="/">
+          Immaculate Item Inventory Solutions
         </Link>{' '}
         {new Date().getFullYear()}
         {'.'}

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,7 +15,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import Copyright from './Copyright';
 import DefaultTheme from './DefaultTheme';
 
-export default function SignIn({ setToken }) {
+export default function Login() {
 
   const handleSubmit = async(event) => {
     event.preventDefault();
@@ -39,8 +38,6 @@ export default function SignIn({ setToken }) {
           sx={{
             backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
             backgroundRepeat: 'no-repeat',
-            backgroundColor: (t) =>
-              t.palette.mode === 'dark' ? t.palette.grey[50] : t.palette.grey[900],
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
@@ -59,7 +56,7 @@ export default function SignIn({ setToken }) {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign in
+              Login
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
@@ -82,24 +79,15 @@ export default function SignIn({ setToken }) {
                 id="password"
                 autoComplete="current-password"
               />
-              {/* <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              /> */}
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                Login
               </Button>
               <Grid container>
-                {/* <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid> */}
                 <Grid item>
                   <Link href="/" variant="body2">
                     {"Don't have an account? Sign Up"}
@@ -113,8 +101,4 @@ export default function SignIn({ setToken }) {
       </Grid>
     </ThemeProvider>
   );
-}
-
-SignIn.propTypes = {
-  setToken: PropTypes.func.isRequired
 }
