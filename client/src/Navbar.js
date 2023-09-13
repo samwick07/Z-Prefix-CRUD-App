@@ -143,7 +143,7 @@ function ResponsiveAppBar() {
                     aria-label="theme switch"
                     />
                 }
-                label={auth ? 'Dark' : 'Light'}
+                label={auth ? 'Darker' : 'Dark'}
                 />
             </FormGroup>
             <Box sx={{ flexGrow: 0 }}>

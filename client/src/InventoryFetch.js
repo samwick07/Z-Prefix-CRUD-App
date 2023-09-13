@@ -5,7 +5,7 @@ const InventoryFetch = (data) => {
   const [error, setError] = useState(null);
   const url = `http://localhost:`;
   const port = `8080`;
-  const endpoint = `/Inventory`;
+  const endpoint = `/Items`;
 
   useEffect(() => {
     async function fetchInventory() {
