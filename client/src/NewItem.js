@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/material/styles';
 import DefaultTheme from './DefaultTheme';
+import { Link } from 'react-router-dom';
 
 
 export default function NewItem() {
@@ -105,7 +106,6 @@ export default function NewItem() {
               type="submit"
               fullWidth
               variant="contained"
-              href="/"
               sx={{ mt: 3, mb: 2 }}
             >
               Add New Item
