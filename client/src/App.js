@@ -5,8 +5,8 @@ import Footer from './Footer';
 import Inventory from './Inventory';
 import Login from './Login';
 import NewItem from './NewItem';
+import UpdateItem from './UpdateItem';
 import NewUser from './NewUser';
-import ItemDetails from './ItemDetails';
 
 function App() {
   return (
@@ -16,9 +16,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Inventory />} />
           <Route path="/NewItem" element={<NewItem/>} />
+          <Route path="/UpdateItem/:id" element={<UpdateItem/>} />
           <Route path="/NewUser" element={<NewUser/>} />
           <Route path="/Login" element={<Login/>} />
-          <Route path="/ItemDetails/:id" element={<ItemDetails />} />
         </Routes>
         <Footer />
       </Router>

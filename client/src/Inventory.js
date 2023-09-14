@@ -84,7 +84,7 @@ export default function Inventory() {
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <Button size="small" href={`/ItemDetails/${card.id}`}>View | Edit</Button>
+                      <Button size="small" href={`/UpdateItem/${card.id}`}>View | Edit</Button>
                       <Button size="small" color="secondary">Delete</Button>
                     </CardActions>
                   </Card>

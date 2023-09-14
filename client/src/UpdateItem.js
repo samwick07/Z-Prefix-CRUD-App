@@ -10,9 +10,11 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/material/styles';
 import DefaultTheme from './DefaultTheme';
+import { useParams } from "react-router-dom";
 
 
 export default function UpdateItem() {
+  const { id } = useParams();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -23,7 +25,7 @@ export default function UpdateItem() {
       Quantity: data.get('Quantity')}
     console.log(newItemPatch);
 
-    fetch(`http://localhost:8080/UpdateItem/${data.get('id')}`, {
+    fetch(`http://localhost:8080/UpdateItem/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json"
