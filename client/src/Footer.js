@@ -9,9 +9,14 @@ import DefaultTheme from './DefaultTheme';
 export default function Footer() {
   return (
     <ThemeProvider theme={DefaultTheme}>
-        <CssBaseline />
-        <Box>
-          <Container maxWidth="sm">
+      <CssBaseline />
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: '5vh',
+          }}>
+          <Container maxWidth="lg">
             <Copyright />
           </Container>
         </Box>

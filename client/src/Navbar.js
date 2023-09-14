@@ -18,17 +18,25 @@ import FormGroup from '@mui/material/FormGroup';
 // import { Link } from 'react-router-dom';
 import { ThemeProvider } from '@emotion/react';
 import DefaultTheme from './DefaultTheme';
+import { useInventoryContext } from './Context';
 
-const pages = ['Item Inventory', 'Create Account'];
-const settings = ['My Items', 'Account', 'Logout'];
+const pages = ['Sign In', 'Sign Up'];
+const settings = ['My Items', 'Account Settings', 'Logout'];
 
 function ResponsiveAppBar() {
   const [auth, setAuth] = React.useState(true);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const { themeMode, setThemeMode } = useInventoryContext();
   
-  const handleChange = (event) => {
+  const handleThemeChange = (event) => {
     setAuth(event.target.checked);
+    if (themeMode === 'light') {
+        setThemeMode('dark');
+    } else if (themeMode === 'dark') {
+        setThemeMode('light');
+    }
+    
   };
 
   const handleOpenNavMenu = (event) => {
@@ -100,7 +108,7 @@ function ResponsiveAppBar() {
                 >
                 {pages.map((page) => (
                     <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
+                    <Typography textAlign="center"></Typography>
                     </MenuItem>
                 ))}
                 </Menu>
@@ -139,17 +147,17 @@ function ResponsiveAppBar() {
                 control={
                     <Switch
                     checked={auth}
-                    onChange={handleChange}
+                    onChange={handleThemeChange}
                     aria-label="theme switch"
                     />
                 }
-                label={auth ? 'Darker' : 'Dark'}
+                label={auth ? 'Dark' : 'Light'}
                 />
             </FormGroup>
             <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                    <Avatar alt="Administrator" src="/static/images/avatar/2.jpg" />
                 </IconButton>
                 </Tooltip>
                 <Menu

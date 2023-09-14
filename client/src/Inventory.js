@@ -10,24 +10,15 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { Stack } from '@mui/material';
-// import Link from '@mui/material/Link';
+import Link from '@mui/material/Link';
 import { ThemeProvider } from '@mui/material/styles';
 import InventoryFetch from './InventoryFetch';
 import DefaultTheme from './DefaultTheme';
 
 
 export default function Inventory() {
-//   // Hard-coded items for back-end testing.
-//   const inventoryData = [
-//     {name: 'Hammer'},
-//     {name: 'Shovel'},
-//     {name: 'Square'},
-//     {name: 'Tape Measure'},
-//     {name: 'Screw Driver'},
-//     {name: 'Socket Wrench'},
-//   ];
 
-  // API fetch for Hard-coded back-end testing.
+  // API fetch for back-end testing.
   const { inventoryData } = InventoryFetch();
 
   return (
@@ -60,7 +51,7 @@ export default function Inventory() {
               spacing={2}
               justifyContent="center"
             >
-              <Button variant="contained">Add New Item</Button>
+              <Button href='/NewItem' variant="contained">Add New Item</Button>
               <Button variant="outlined">Update Inventory</Button>
             </Stack>
           </Container>
@@ -68,34 +59,37 @@ export default function Inventory() {
         <Container sx={{ py: 8 }} maxWidth="lg">
           <Grid container spacing={4}>
             {inventoryData.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={3}>
-                <Card
-                  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                >
-                  <CardMedia
-                    component="div"
-                    sx={{
-                      // 16:9
-                      pt: '56.25%',
-                    }}
-                    image="https://source.unsplash.com/random?wallpapers"
-                  />
-                  <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {card.Item_Name}
-                    </Typography>
-                    <Typography>
-                      {card.Description}
-                    </Typography>
-                    <Typography>
-                        Qty: {card.Quantity}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small">View</Button>
-                    <Button size="small">Edit</Button>
-                  </CardActions>
-                </Card>
+              <Grid item key={card.id} xs={12} sm={6} md={3}>
+                <Link to={`/Items/${card.id}`} style={ {textDecoration: 'none'} }>
+                  <Card
+                    sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+                  >
+                    <CardMedia
+                      component="div"
+                      sx={{
+                        // 16:9
+                        pt: '56.25%',
+                      }}
+                      image="https://source.unsplash.com/random?wallpapers"
+                      // image={card.Image}
+                    />
+                    <CardContent sx={{ flexGrow: 1 }}>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {card.ItemName}
+                      </Typography>
+                      <Typography>
+                        {card.Description}
+                      </Typography>
+                      <Typography>
+                          Qty: {card.Quantity}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button size="small">View</Button>
+                      <Button size="small">Edit</Button>
+                    </CardActions>
+                  </Card>
+                </Link>
               </Grid>
             ))}
           </Grid>

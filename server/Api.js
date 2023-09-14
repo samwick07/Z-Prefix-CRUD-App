@@ -70,4 +70,14 @@ api.get('/Users/:id', (req, res) => {
     });
 });
 
+// [C]RUD API endpoint for adding a new inventory item to the database.
+api.post('/NewItem', (req, res) => {
+  knex('item_table')
+    .insert(req.body)
+    .then((newItem) => {
+      res.send(req.body.UserId, req.body.ItemName, req.body.Description, req.body.Quantity)
+      console.log(`${newItem} was added to the items table in the inventory database.`);
+    })
+})
+
 api.listen(port, () => console.log(`Z-Prefix CRUD API is listening at http://localhost:${port}!`));
