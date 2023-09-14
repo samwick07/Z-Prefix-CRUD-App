@@ -5,30 +5,30 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import PostAddIcon from '@mui/icons-material/PostAdd';
+import EditNoteIcon from '@mui/icons-material/EditNote';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/material/styles';
 import DefaultTheme from './DefaultTheme';
 
 
-export default function NewItem() {
+export default function UpdateItem() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const newItemPost = {
+    const newItemPatch = {
       UserId: data.get('UserId'),
       ItemName: data.get('ItemName'),
       Description: data.get('Description'),
       Quantity: data.get('Quantity')}
-    console.log(newItemPost);
+    console.log(newItemPatch);
 
-    fetch(`http://localhost:8080/NewItem`, {
-      method: "POST",
+    fetch(`http://localhost:8080/UpdateItem/${data.get('id')}`, {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(newItemPost)
+      body: JSON.stringify(newItemPatch)
       })
       .then((rawResponse) => {
         if (!rawResponse.ok) {
@@ -56,11 +56,11 @@ export default function NewItem() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <PostAddIcon />
+          <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
+            <EditNoteIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Add New Inventory Item
+            Edit Inventory Item
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
@@ -105,10 +105,10 @@ export default function NewItem() {
               type="submit"
               fullWidth
               variant="contained"
-              href="/"
+              color="secondary"
               sx={{ mt: 3, mb: 2 }}
             >
-              Add New Item
+              Edit Item
             </Button>
           </Box>
         </Box>

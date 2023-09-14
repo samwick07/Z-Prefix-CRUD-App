@@ -12,7 +12,7 @@ const knex = require("knex")(
 // root route for API testing
 api.get('/', (req, res) => res.status(200).send(`Z-Prefix CRUD API is listening at http://localhost:${port}!`));
 
-// C[R]UD API endpoint for ALL inventory items
+// C[R]UD API endpoint for reading ALL inventory items
 api.get('/Items', (req, res) => {
   knex('item_table')
   .select('*')
@@ -21,7 +21,7 @@ api.get('/Items', (req, res) => {
   });
 });
 
-// C[R]UD API endpoint for single inventory item, selected by InventoryId
+// C[R]UD API endpoint for reading a single inventory item, selected by InventoryId
 api.get("/Items/:id", (req, res) => {
   const itemId = req.params.id;
 
@@ -41,7 +41,7 @@ api.get("/Items/:id", (req, res) => {
     });
 });
 
-// C[R]UD API endpoint for ALL inventory users
+// C[R]UD API endpoint for reading ALL inventory users
 api.get('/Users', (req, res) => {
   knex('user_table')
     .select("*")
@@ -50,7 +50,7 @@ api.get('/Users', (req, res) => {
     });
 });
 
-// C[R]UD API endpoint for a single inventory user, selected by UserId
+// C[R]UD API endpoint for reading a single inventory user, selected by UserId
 api.get('/Users/:id', (req, res) => {
   const userId = req.params.id;
 
@@ -70,7 +70,7 @@ api.get('/Users/:id', (req, res) => {
     });
 });
 
-// [C]RUD API endpoint for adding a new inventory item to the item_table in the database.
+// [C]RUD API endpoint for creating a new inventory item within the item_table in the database.
 api.post('/NewItem', (req, res) => {
   knex('item_table')
     .insert(req.body)
@@ -80,7 +80,7 @@ api.post('/NewItem', (req, res) => {
     })
 })
 
-// [C]RUD API endpoint for adding a new inventory user to the user_table in the database.
+// [C]RUD API endpoint for creating a new inventory user within the user_table in the database.
 api.post('/NewUser', (req, res) => {
   knex('user_table')
     .insert(req.body)
@@ -89,5 +89,39 @@ api.post('/NewUser', (req, res) => {
       console.log(`${newUser} was added to the user table in the inventory database.`);
     })
 })
+
+// CR[U]D API endpoint for updating an existing inventory item
+api.patch("/UpdateItem/:id", (req, res) => {
+  knex("item_table")
+    .where({ id: req.params.id })
+    .update({
+      UserId: req.body.UserId,
+      ItemName: req.body.ItemName,
+      Description: req.body.Description,
+      Quantity: req.body.Quantity
+    })
+    .then((updatedRows) => {
+      if (updatedRows > 0) {
+        res
+          .status(200)
+          .send(`${req.body.ItemName} record was updated`);
+      } else {
+        res.status(404).send("Error 404 - Item not found!");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send("Error updating item");
+    });
+});
+
+// CRU[D] API endpoint for deleting an existing inventory item
+api.delete("/DeleteItem/:id", (req, res) => {
+  knex("item_table")
+    .where({ id: req.params.id })
+    .del()
+    .then(res.status(200).send(`${req.params.id} deleted`))
+    .catch(res.status(400).send(`Unable to delete item!`));
+});
 
 api.listen(port, () => console.log(`Z-Prefix CRUD API is listening at http://localhost:${port}!`));

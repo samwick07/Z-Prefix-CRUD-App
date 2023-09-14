@@ -52,7 +52,6 @@ export default function Inventory() {
               justifyContent="center"
             >
               <Button href='/NewItem' variant="contained">Add New Item</Button>
-              <Button variant="outlined">Update Inventory</Button>
             </Stack>
           </Container>
         </Box>
@@ -71,22 +70,22 @@ export default function Inventory() {
                         pt: '56.25%',
                       }}
                       image="https://source.unsplash.com/random?wallpapers"
-                      // image={card.Image}
+                      // image={card.Image} not implemented within knex migrations/seeds
                     />
                     <CardContent sx={{ flexGrow: 1 }}>
                       <Typography gutterBottom variant="h5" component="h2">
                         {card.ItemName}
                       </Typography>
                       <Typography>
-                        {card.Description}
+                        {card.Description.length > 100 ? card.Description.slice(0,100) + '...' : card.Description}
                       </Typography>
                       <Typography>
                           Qty: {card.Quantity}
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <Button size="small">View</Button>
-                      <Button size="small">Edit</Button>
+                      <Button size="small" href={`/ItemDetails/${card.id}`}>View | Edit</Button>
+                      <Button size="small" color="secondary">Delete</Button>
                     </CardActions>
                   </Card>
                 </Link>

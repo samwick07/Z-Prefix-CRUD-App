@@ -21,8 +21,9 @@ import DefaultTheme from './DefaultTheme';
 import { useInventoryContext } from './Context';
 
 const pages = [
+    <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>Items</Link>,
     <Link to="/NewItem" style={{ textDecoration: "none", color: "inherit" }}>Add Item</Link>,
-    <Link to="/Login" style={{ textDecoration: "none", color: "inherit"}}>Sign In</Link>,
+    <Link to="/Login" style={{ textDecoration: "none", color: "inherit"}}>Login</Link>,
     <Link to="/NewUser" style={{ textDecoration: "none", color: "inherit" }}>Sign Up</Link>
 ];
 
@@ -65,23 +66,23 @@ function ResponsiveAppBar() {
         <Container maxWidth="xl">
             <Toolbar disableGutters>
             <PostAddIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-            <Typography
-                variant="h6"
-                noWrap
-                component="a"
-                href="/"
-                sx={{
-                mr: 2,
-                display: { xs: 'none', md: 'flex' },
-                fontFamily: 'monospace',
-                fontWeight: 400,
-                color: 'inherit',
-                textDecoration: 'none',
-                }}
-            >
-                I3 Solutions
-            </Typography>
-
+            <Link to='/' style={{ textDecoration: "none", color: "inherit" }}>
+                <Typography
+                    variant="h6"
+                    noWrap
+                    component="a"
+                    sx={{
+                        mr: 2,
+                        display: { xs: 'none', md: 'flex' },
+                        fontFamily: 'monospace',
+                        fontWeight: 400,
+                        color: 'inherit',
+                        textDecoration: 'none',
+                    }}
+                >
+                    I3 Solutions
+                </Typography>
+            </Link>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                 <IconButton
                 size="large"
@@ -113,29 +114,31 @@ function ResponsiveAppBar() {
                 >
                 {pages.map((page) => (
                     <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center"></Typography>
+                    <Typography textAlign="center">{page}</Typography>
                     </MenuItem>
                 ))}
                 </Menu>
             </Box>
             <PostAddIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-            <Typography
-                variant="h5"
-                noWrap
-                component="a"
-                href="/"
-                sx={{
-                mr: 2,
-                display: { xs: 'flex', md: 'none' },
-                flexGrow: 1,
-                fontFamily: 'monospace',
-                fontWeight: 400,
-                color: 'inherit',
-                textDecoration: 'none',
-                }}
-            >
-                I3 Solutions
-            </Typography>
+            <Link to='/' style={{ textDecoration: "none", color: "inherit" }}>
+                <Typography
+                    variant="h5"
+                    noWrap
+                    component="a"
+                    href="/"
+                    sx={{
+                        mr: 2,
+                        display: { xs: 'flex', md: 'none' },
+                        flexGrow: 1,
+                        fontFamily: 'monospace',
+                        fontWeight: 400,
+                        color: 'inherit',
+                        textDecoration: 'none',
+                    }}
+                >
+                    I3 Solutions
+                </Typography>
+            </Link>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                 {pages.map((page) => (
                 <Button
