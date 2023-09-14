@@ -6,6 +6,7 @@ import Inventory from './Inventory';
 import Login from './Login';
 import NewItem from './NewItem';
 import NewUser from './NewUser';
+import ItemDetails from './ItemDetails';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/NewItem" element={<NewItem/>} />
           <Route path="/NewUser" element={<NewUser/>} />
           <Route path="/Login" element={<Login/>} />
+          <Route path="/ItemDetails/:id" element={<ItemDetails />} />
         </Routes>
         <Footer />
       </Router>

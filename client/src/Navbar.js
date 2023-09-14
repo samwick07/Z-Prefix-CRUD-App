@@ -15,12 +15,17 @@ import PostAddIcon from '@mui/icons-material/PostAdd';
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ThemeProvider } from '@emotion/react';
 import DefaultTheme from './DefaultTheme';
 import { useInventoryContext } from './Context';
 
-const pages = ['Sign In', 'Sign Up'];
+const pages = [
+    <Link to="/NewItem" style={{ textDecoration: "none", color: "inherit" }}>Add Item</Link>,
+    <Link to="/Login" style={{ textDecoration: "none", color: "inherit"}}>Sign In</Link>,
+    <Link to="/NewUser" style={{ textDecoration: "none", color: "inherit" }}>Sign Up</Link>
+];
+
 const settings = ['My Items', 'Account Settings', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -74,7 +79,7 @@ function ResponsiveAppBar() {
                 textDecoration: 'none',
                 }}
             >
-                I3
+                I3 Solutions
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -129,7 +134,7 @@ function ResponsiveAppBar() {
                 textDecoration: 'none',
                 }}
             >
-                I3
+                I3 Solutions
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                 {pages.map((page) => (
@@ -157,7 +162,7 @@ function ResponsiveAppBar() {
             <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="Administrator" src="/static/images/avatar/2.jpg" />
+                    <Avatar alt="Administrator" src="/assets/images/avatar.jpg" />
                 </IconButton>
                 </Tooltip>
                 <Menu
