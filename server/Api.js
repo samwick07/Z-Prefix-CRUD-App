@@ -70,13 +70,23 @@ api.get('/Users/:id', (req, res) => {
     });
 });
 
-// [C]RUD API endpoint for adding a new inventory item to the database.
+// [C]RUD API endpoint for adding a new inventory item to the item_table in the database.
 api.post('/NewItem', (req, res) => {
   knex('item_table')
     .insert(req.body)
     .then((newItem) => {
       res.send(req.body.UserId, req.body.ItemName, req.body.Description, req.body.Quantity)
       console.log(`${newItem} was added to the items table in the inventory database.`);
+    })
+})
+
+// [C]RUD API endpoint for adding a new inventory user to the user_table in the database.
+api.post('/NewUser', (req, res) => {
+  knex('user_table')
+    .insert(req.body)
+    .then((newUser) => {
+      res.send(req.body.FirstName, req.body.LastName, req.body.Username, req.body.Password)
+      console.log(`${newUser} was added to the user table in the inventory database.`);
     })
 })
 

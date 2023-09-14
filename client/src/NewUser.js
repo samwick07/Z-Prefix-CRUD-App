@@ -3,7 +3,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -12,7 +11,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 // import Link from '@mui/material/Link';
 import { ThemeProvider } from '@mui/material/styles';
-import InventoryFetch from './InventoryFetch';
 import DefaultTheme from './DefaultTheme';
 
 
@@ -20,6 +18,32 @@ export default function NewUser() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    const newUserPost = {
+      FirstName: data.get('FirstName'),
+      LastName: data.get('LastName'),
+      Username: data.get('Username'),
+      Password: data.get('Password')}
+    console.log(newUserPost);
+
+    fetch(`http://localhost:8080/NewUser`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newUserPost)
+      })
+      .then((rawResponse) => {
+        if (!rawResponse.ok) {
+          throw new Error(
+            `code: ${rawResponse.status}, status text: ${rawResponse.statusText}`
+          );
+        }
+        return rawResponse.json();
+      })
+      .then((jsonifiedResponse) =>
+        console.log("Jsonified data: ", jsonifiedResponse)
+      )
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -46,8 +70,8 @@ export default function NewUser() {
                 <TextField
                   required
                   fullWidth
-                  name="First_Name"
-                  id="First_Name"
+                  name="FirstName"
+                  id="FirstName"
                   label="First Name"
                 />
               </Grid>
@@ -55,8 +79,8 @@ export default function NewUser() {
                 <TextField
                   required
                   fullWidth
-                  name="Last_Name"
-                  id="Last_Name"
+                  name="LastName"
+                  id="LastName"
                   label="Last Name"
                 />
               </Grid>
@@ -76,6 +100,7 @@ export default function NewUser() {
                   name="Password"
                   id="Password"
                   label="Password"
+                  type="password"
                 />
               </Grid>
             </Grid>
@@ -89,7 +114,7 @@ export default function NewUser() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/Login" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
