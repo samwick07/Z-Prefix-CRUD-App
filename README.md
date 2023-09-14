@@ -1,5 +1,5 @@
 # Z-Prefix-CRUD-App
-This single-page CRUD application is useful for inventory management. Users can create, add, update, and delete inventory items and user profiles. This app is built with a PostgreSQL, Express, React.js, Node.js (PERN) stack.
+This single-page CRUD application is useful for inventory management. Users can create, add, update, and delete inventory items and user profiles. This app is built with a PostgreSQL, Express, React.js, Node.js (PERN) stack. All styling utilizes Material UI components and documentation.
 
 ## Set-up and Configuration
 ### Database
